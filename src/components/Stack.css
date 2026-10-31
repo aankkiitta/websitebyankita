@@ -1,0 +1,258 @@
+.stack-section {
+  position: relative;
+  background-color: #ffffff;
+  padding: 120px 20px;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  justify-content: center;
+  scroll-margin-top: 80px;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+.stack-section *, 
+.stack-section *::before, 
+.stack-section *::after {
+  box-sizing: border-box;
+}
+
+.st-container {
+  width: 100%;
+  max-width: 1100px;
+  text-align: center;
+}
+
+.st-title {
+  font-size: clamp(2rem, 4vw, 3.2rem);
+  font-weight: 500;
+  color: #111;
+  margin: 0 0 60px;
+}
+
+/* --- GRID WRAPPER --- */
+.st-grid-wrap {
+  position: relative;
+}
+
+/* --- BACKGROUND CUBE --- */
+.st-cube-wrap {
+  position: absolute;
+  z-index: 0;
+  left: 50%;
+  top: 50%; 
+  transform: translate(-50%, -50%);
+  width: min(680px, 110vw);
+  pointer-events: none;
+}
+
+.st-cube {
+  display: block;
+  width: 100%;
+  height: auto;
+  user-select: none;
+  animation: st-cube-float 8s ease-in-out infinite;
+}
+
+@keyframes st-cube-float {
+  0%, 100% { transform: translateY(0) rotate(-2deg); }
+  50% { transform: translateY(-20px) rotate(2deg); }
+}
+
+/* --- THE 3x3 GRID --- */
+.st-grid {
+  position: relative;
+  z-index: 1;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 24px; 
+}
+
+/* --- CARD FLOATING ANIMATION --- */
+.st-item-wrap {
+  animation: st-float-item 6s ease-in-out infinite;
+  animation-delay: calc(var(--i) * -0.8s);
+  will-change: transform;
+  width: 100%;
+}
+
+@keyframes st-float-item {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-12px); }
+}
+
+/* --- LAVENDER RING --- */
+.st-ring {
+  padding: 14px;
+  border-radius: 32px;
+  background: rgba(244, 244, 255, 0.78);
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+  transform: scale(var(--s, 1));
+  opacity: var(--o, 1);
+  will-change: transform, opacity;
+  transition: box-shadow 0.4s ease, transform 0.4s ease;
+}
+
+.st-ring:hover {
+  box-shadow: 0 20px 40px rgba(99, 102, 241, 0.12);
+}
+
+/* --- FLIP CARD --- */
+.st-card {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 240px; 
+  padding: 0;
+  border: 0;
+  background: none;
+  color: inherit;
+  font: inherit;
+  text-align: center;
+  cursor: pointer;
+  perspective: 1200px;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.st-card-inner {
+  position: relative;
+  display: block;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: transform 0.8s cubic-bezier(0.34, 1.4, 0.64, 1);
+}
+
+.st-card:hover .st-card-inner {
+  transform: rotateY(6deg) rotateX(6deg) scale(1.04);
+}
+
+.st-card.is-flipped .st-card-inner,
+.st-card.is-flipped:hover .st-card-inner {
+  transform: rotateY(180deg) scale(1);
+}
+
+.st-face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 16px;
+  border-radius: 20px;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+  overflow: hidden;
+}
+
+.st-front {
+  background: #ffffff;
+}
+
+.st-back {
+  justify-content: space-between;
+  background: #111;
+  transform: rotateY(180deg);
+}
+
+.st-back > * {
+  transition: transform 0.5s ease, opacity 0.5s ease;
+  transform: translateY(10px);
+  opacity: 0;
+}
+
+.st-card.is-flipped .st-back > * {
+  transform: translateY(0);
+  opacity: 1;
+  transition-delay: 0.15s;
+}
+
+/* --- LOGO & TEXT --- */
+.st-logo-wrapper {
+  display: block;
+  width: 70px;
+  height: 70px;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+.st-card:hover .st-logo-wrapper {
+  transform: scale(1.1) rotate(-4deg);
+}
+
+.st-logo { width: 100%; height: 100%; object-fit: contain; }
+.st-logo-letter { width: 100%; height: 100%; display: grid; place-items: center; font-size: 1.8rem; font-weight: 700; color: #fff; }
+
+.st-name {
+  font-size: 1.2rem;
+  font-weight: 500;
+  color: #111;
+}
+
+.st-back .st-name { color: #fff; }
+
+.st-text {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  font-size: 0.75rem;
+  line-height: 1.45;
+  color: #d1d5db;
+  overflow-y: auto; 
+  padding-right: 4px;
+}
+
+.st-text::-webkit-scrollbar { width: 3px; }
+.st-text::-webkit-scrollbar-thumb { background: #555; border-radius: 4px; }
+
+/* --- CURSOR PILL --- */
+.st-pill {
+  position: absolute;
+  z-index: 5;
+  left: var(--mx, 50%);
+  top: var(--my, 50%);
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #ffffff;
+  color: #111;
+  font-size: 0.75rem;
+  font-weight: 500;
+  white-space: nowrap;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.14);
+  transform: translate(10px, 10px) scale(0.9);
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.2s ease, transform 0.2s ease;
+}
+
+.st-card:hover .st-pill {
+  opacity: 1;
+  transform: translate(10px, 10px) scale(1);
+}
+
+.st-hint { display: none; font-size: 0.7rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #666; }
+.st-back .st-hint { color: #818cf8; }
+
+@media (hover: none) {
+  .st-pill { display: none; }
+  .st-hint { display: block; }
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+  .st-grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 600px) {
+  .stack-section { padding: 80px 16px; }
+  .st-title { margin-bottom: 40px; }
+  .st-grid { grid-template-columns: 1fr; }
+  .st-card { height: 220px; }
+  .st-cube-wrap { width: min(520px, 130vw); opacity: 0.8; }
+}

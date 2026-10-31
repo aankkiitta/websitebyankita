@@ -1,0 +1,159 @@
+/* ThankYou.css */
+
+.thankyou-wrapper {
+  background-color: #1a1a1a; /* Dark background outside the card */
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 40px;
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+}
+
+.thankyou-card {
+  background-color: #f7f7f7; /* Light grey/white background */
+  width: 100%;
+  max-width: 1200px;
+  height: 85vh;
+  min-height: 600px;
+  border-radius: 32px;
+  position: relative;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+}
+
+/* --- Floating Background Elements (Replacing the 3D people) --- */
+.floating-bg {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.dot {
+  position: absolute;
+  background-color: #d4d4d4;
+  border-radius: 50%;
+  opacity: 0.6;
+  animation: float 6s ease-in-out infinite;
+}
+
+/* Randomly placing dots to simulate the crowd background */
+.dot-1 { width: 8px; height: 8px; top: 15%; left: 20%; animation-delay: 0s; }
+.dot-2 { width: 12px; height: 12px; top: 25%; left: 80%; animation-delay: 1s; }
+.dot-3 { width: 6px; height: 6px; top: 75%; left: 10%; animation-delay: 2s; }
+.dot-4 { width: 10px; height: 10px; top: 80%; left: 85%; animation-delay: 0.5s; }
+.dot-5 { width: 14px; height: 14px; top: 50%; left: 95%; animation-delay: 1.5s; }
+.dot-6 { width: 7px; height: 7px; top: 10%; left: 50%; animation-delay: 2.5s; }
+.dot-7 { width: 9px; height: 9px; top: 85%; left: 40%; animation-delay: 0.8s; }
+.dot-8 { width: 11px; height: 11px; top: 30%; left: 5%; animation-delay: 1.2s; }
+.dot-9 { width: 5px; height: 5px; top: 60%; left: 15%; animation-delay: 3s; }
+.dot-10 { width: 8px; height: 8px; top: 40%; left: 70%; animation-delay: 0.3s; }
+
+/* You can add more classes for dot-11 to dot-15 if needed */
+
+@keyframes float {
+  0% { transform: translateY(0px) scale(1); }
+  50% { transform: translateY(-15px) scale(1.1); }
+  100% { transform: translateY(0px) scale(1); }
+}
+
+/* --- Center Content --- */
+.content-center {
+  position: relative;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.thankyou-title {
+  font-size: clamp(3rem, 8vw, 7rem);
+  font-weight: 900;
+  color: #000000;
+  margin: 0;
+  letter-spacing: -2px;
+  text-transform: uppercase;
+}
+
+/* --- Contact Information --- */
+.contact-info {
+  display: flex;
+  align-items: flex-start;
+  gap: 20px;
+}
+
+.contact-label {
+  font-size: 1rem;
+  font-weight: 700;
+  color: #111;
+  letter-spacing: 1px;
+  padding-top: 5px; /* Alignment fix */
+}
+
+.contact-divider {
+  width: 1px;
+  height: 80px;
+  background-color: #cccccc;
+}
+
+.contact-details {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.contact-row {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 1rem;
+  color: #333;
+  text-decoration: none;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.contact-row:hover {
+  color: #000;
+}
+
+.icon {
+  width: 18px;
+  height: 18px;
+  color: #333;
+}
+
+/* --- Mobile Responsive --- */
+@media (max-width: 768px) {
+  .thankyou-wrapper {
+    padding: 15px;
+  }
+
+  .thankyou-card {
+    height: 90vh;
+    border-radius: 24px;
+  }
+
+  .contact-info {
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+  }
+
+  .contact-divider {
+    width: 80px;
+    height: 1px;
+  }
+
+  .contact-label {
+    padding-top: 0;
+  }
+  
+  .contact-details {
+    align-items: center; /* Center items on mobile */
+  }
+}

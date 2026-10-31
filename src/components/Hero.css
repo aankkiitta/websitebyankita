@@ -1,0 +1,254 @@
+/* Fonts (Inter for the big background text, Source Serif for the name, DM Sans for the rest) */
+@import url("https://fonts.googleapis.com/css2?family=Inter:wght@500;900&family=Source+Serif+4:ital,wght@1,700&family=DM+Sans:wght@400;500;700&display=swap");
+
+/* Base layout */
+.hx {
+  position: relative;
+  height: 100vh;
+  min-height: 620px;
+  overflow: hidden; /* shapes that drift out of the hero are clipped cleanly */
+  background: #fff;
+  color: #111;
+  font-family: "DM Sans", sans-serif;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 7vh;
+}
+
+/* Background Text */
+.hx-marquee {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.hx-track {
+  display: flex;
+  width: max-content;
+  animation: hx-scroll 24s linear infinite;
+  font-family: "Inter", "Arial Black", sans-serif;
+  font-weight: 900;
+  font-size: 34vh;
+  line-height: 1;
+  letter-spacing: -0.02em;
+  color: #000;
+  -webkit-text-stroke: 0.025em #000;
+  white-space: nowrap;
+}
+
+@keyframes hx-scroll {
+  to { transform: translateX(-50%); }
+}
+
+/* Main Content Area */
+.hx-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.hx h1 {
+  margin: 0;
+  font-weight: 500;
+  font-size: clamp(1.8rem, 6.4vh, 4rem);
+  line-height: 1.1;
+}
+.hx h1 em {
+  font-family: "Source Serif 4", Georgia, serif;
+  font-style: italic;
+  font-weight: 700;
+  font-size: 1.06em;
+}
+
+/* Rotating Words */
+.hx-word {
+  height: 3.6vh;
+  min-height: 1.4rem;
+  margin: 1.6vh 0 1.4vh;
+  font-size: clamp(1rem, 2.8vh, 1.5rem);
+  color: #555;
+  overflow: hidden;
+}
+.hx-word span { display: block; }
+
+/* Profile Photo */
+.hx-photo {
+  height: clamp(190px, 39vh, 420px);
+  aspect-ratio: 0.955;
+  position: relative;
+}
+
+.hx-photo-in {
+  width: 100%;
+  height: 100%;
+  border-radius: 21%;
+  overflow: hidden;
+  background: #b9a8e6;
+  box-shadow: 0 24px 50px rgba(0,0,0,.25);
+  border: 1px solid rgba(110,100,255,.5);
+  transform: perspective(1000px) rotateY(18deg);
+  transition: transform .6s cubic-bezier(.22,1,.36,1);
+}
+.hx-photo:hover .hx-photo-in {
+  transform: perspective(1000px) rotateY(0deg);
+}
+.hx-photo-in img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+/* Clients Info */
+.hx-clients {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin: 2.2vh 0 2.6vh;
+  color: #444;
+  font-size: clamp(.85rem, 1.9vh, 1.05rem);
+}
+.hx-avatars { display: flex; }
+.hx-avatars b {
+  width: clamp(28px, 4.2vh, 40px);
+  aspect-ratio: 1;
+  border-radius: 50%;
+  border: 3px solid #fff;
+  margin-left: -10px;
+  box-shadow: 0 0 0 2px #f1f1f1;
+}
+.hx-avatars b:first-child { margin-left: 0; }
+
+/* CTA Button */
+.hx-cta {
+  display: inline-block;
+  padding: 2.4vh 6.5vh;
+  border-radius: 999px;
+  background: #fff;
+  color: #111;
+  text-decoration: none;
+  font-weight: 700;
+  font-size: clamp(1rem, 3.1vh, 1.6rem);
+  border: 4px solid #eceaff;
+  box-shadow: 0 0 0 0 #eceaff;
+  transition: box-shadow .3s;
+}
+.hx-cta:hover {
+  box-shadow: 0 0 0 8px #eceaff;
+}
+
+/* Floating text blocks: .hx-fl = scroll float (framer), .hx-bob = idle up/down bob (CSS translate) */
+.hx-fl { will-change: transform; }
+.hx-bob { animation: hx-bob 5s ease-in-out infinite; }
+@keyframes hx-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -0.8vh; }
+}
+
+/* 3D Shapes */
+.hx-stage {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  width: min(1240px, 100%);
+  transform: translateX(-50%);
+  z-index: 2;
+  pointer-events: none;
+}
+
+/* .hx-shape = position + idle up/down float (CSS "translate" property) */
+.hx-shape {
+  position: absolute;
+  width: min(27vh, 15vw);
+  aspect-ratio: 1;
+  animation: hx-float 6s ease-in-out infinite;
+  filter: drop-shadow(0 1.8vh 1.6vh rgba(0,0,0,.18));
+}
+
+/* .hx-par = scroll parallax layer (framer-motion sets its transform) */
+.hx-par {
+  display: block;
+  width: 100%;
+  height: 100%;
+  will-change: transform;
+}
+
+.hx-rot { display: block; width: 100%; height: 100%; }
+
+@keyframes hx-float {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -2.4vh; }
+}
+
+/* Individual shape positions (desktop) */
+.hx-s1 { left: 14%; top: 9%; }
+.hx-s1 .hx-rot { rotate: -8deg; }
+.hx-s2 { right: 15%; top: 9%; width: min(25vh, 14vw); animation-delay: -1s; }
+.hx-s2 .hx-rot { rotate: 12deg; }
+.hx-s3 { left: 9%; top: 38%; width: min(23vh, 13vw); animation-delay: -2s; }
+.hx-s4 { right: 10%; top: 39%; width: min(21vh, 12vw); animation-delay: -3s; }
+.hx-s4 .hx-rot { rotate: 20deg; }
+.hx-s5 { left: 15%; top: 66%; width: min(26vh, 14vw); animation-delay: -1.5s; }
+.hx-s5 .hx-rot { rotate: 25deg; }
+.hx-s6 { right: 15%; top: 65%; width: min(24vh, 13.5vw); animation-delay: -2.5s; }
+.hx-s6 .hx-rot { rotate: -8deg; }
+
+/* Mobile */
+@media (max-width: 800px) {
+  .hx { height: 100vh; height: 100svh; min-height: 600px; padding-top: 64px; }
+  .hx-track { font-size: 28svh; }
+  .hx h1 { font-size: clamp(1.7rem, 8.5vw, 2.6rem); }
+  .hx-word { height: auto; min-height: 1.4rem; margin: 8px 0 14px; font-size: 1rem; }
+  .hx-photo { height: auto; width: min(58vw, 280px); aspect-ratio: 0.955; }
+  .hx-clients { margin: 16px 0 18px; font-size: .85rem; }
+  .hx-avatars b { width: 30px; }
+  .hx-cta { min-width: min(80vw, 320px); padding: 15px 20px; text-align: center; font-size: 1.05rem; border-width: 3px; }
+  .hx-stage { left: 0; width: 100%; transform: none; z-index: auto; }
+  /* Where the heading starts and the button ends, worked out from the content height,
+     so the shapes stay attached to them on every phone height */
+  .hx {
+    --hx-h: calc(212px + min(60.7vw, 293px));          /* ~ total height of the text + photo + button */
+    --hx-top: calc(50% + 32px - var(--hx-h) / 2);      /* y of the heading's top edge */
+    --hx-bot: calc(50% + 32px + var(--hx-h) / 2);      /* y of the button's bottom edge */
+  }
+
+  /* Shape sizes + positions copied from the reference (Sia) layout.
+     Top shapes hang off the heading's top edge, bottom shapes off the button's bottom edge. */
+
+  /* 3 on top: Cylinder | Sphere | Pyramid  (cylinder + pyramid overlap the heading) */
+  .hx-s5 { left: 6%; right: auto; bottom: auto;
+           width: 36vw !important; max-width: 180px;
+           top: calc(var(--hx-top) + 54px - min(36vw, 180px)); }
+  .hx-s3 { left: calc(50% - min(13vw, 65px)); right: auto; bottom: auto;
+           width: 26vw !important; max-width: 130px;
+           top: calc(var(--hx-top) - 13px - min(26vw, 130px)); }
+  .hx-s1 { left: auto; right: 9%; bottom: auto;
+           width: 29.5vw !important; max-width: 148px;
+           top: calc(var(--hx-top) + 36px - min(29.5vw, 148px)); }
+
+  /* 3 at the bottom: Yellow cube | Lime cube | Star  (all three overlap the button) */
+  .hx-s6 { left: calc(50% - min(40vw, 160px) - min(8.3vw, 42px)); right: auto; bottom: auto;
+           width: 30vw !important; max-width: 150px;
+           top: calc(var(--hx-bot) - 50px); }
+  .hx-s4 { left: calc(50% - min(12vw, 60px)); right: auto; bottom: auto;
+           width: 24vw !important; max-width: 120px;
+           top: calc(var(--hx-bot) - 8px); }
+  /* star sits IN FRONT of the button's right end, like the reference (z-index above the text block) */
+  .hx-s2 { left: calc(50% + min(40vw, 160px) - min(23.3vw, 116px)); right: auto; bottom: auto; z-index: 4;
+           width: 32vw !important; max-width: 160px;
+           top: calc(var(--hx-bot) - 60px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .hx-track, .hx-shape, .hx-bob { animation: none; }
+}

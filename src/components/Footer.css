@@ -1,0 +1,197 @@
+/* Footer.css */
+
+.footer-section {
+    position: relative;
+    background-color: #ffffff;
+    width: 100%;
+    min-height: auto;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 100px 8vw 40px 8vw;
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    overflow: hidden;
+    box-sizing: border-box;
+}
+
+/* --- TOP DOTS --- */
+.top-right-dots {
+    position: absolute;
+    top: 40px;
+    right: 40px;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+}
+
+.top-right-dots span {
+    width: 8px;
+    height: 8px;
+    background-color: #333;
+    border-radius: 2px;
+}
+
+/* --- MAIN CONTAINER --- */
+.footer-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    flex-wrap: wrap;
+    gap: 40px;
+}
+
+/* Left Side */
+.footer-left {
+    flex: 1;
+    min-width: 300px;
+}
+
+.footer-title {
+    font-size: clamp(4rem, 10vw, 8rem);
+    font-weight: 800;
+    color: #000;
+    line-height: 1;
+    margin: 0 0 15px 0;
+    letter-spacing: -3px;
+}
+
+.footer-title .dot {
+    font-size: 0.4em;
+    vertical-align: super;
+}
+
+.footer-subtitle {
+    font-size: clamp(0.8rem, 1.2vw, 1rem);
+    font-weight: 600;
+    color: #333;
+    letter-spacing: 1px;
+    margin: 0;
+    text-transform: uppercase;
+}
+
+/* Right Side (Contact Info) */
+.footer-right {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    min-width: 300px;
+    margin-top: 40px;
+}
+
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    font-size: 1rem;
+    color: #333;
+    text-decoration: none;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    transition: color 0.3s ease;
+}
+
+a.contact-item:hover {
+    color: #000;
+}
+
+.icon {
+    width: 20px;
+    height: 20px;
+    color: #666;
+    flex-shrink: 0;
+}
+
+.icon-text {
+    font-size: 1.2rem;
+    font-weight: 600;
+    color: #666;
+    line-height: 1;
+    display: inline-flex;
+    justify-content: center;
+    width: 20px;
+    flex-shrink: 0;
+}
+
+/* --- GITHUB + LINKEDIN BUTTONS --- */
+.footer-socials {
+    display: flex;
+    gap: 12px;
+    margin-top: 8px;
+}
+
+.social-btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1.5px solid #333;
+    border-radius: 50%;
+    color: #333;
+    transition: transform 0.2s ease, background-color 0.2s ease, color 0.2s ease, border-color 0.2s ease;
+}
+
+.social-btn svg {
+    width: 20px;
+    height: 20px;
+}
+
+.social-btn:hover {
+    transform: translateY(-3px);
+    background: #ff5a36;
+    border-color: #ff5a36;
+    color: #fff;
+}
+
+/* --- BOTTOM SECTION --- */
+.footer-bottom-area {
+    width: 100%;
+    max-width: 1400px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    margin-top: 80px;
+}
+
+/* --- COPYRIGHT TEXT --- */
+.copyright-text {
+    text-align: center;
+    font-size: 0.9rem;
+    color: #999;
+    font-weight: 400;
+    width: 100%;
+    letter-spacing: 0.5px;
+}
+
+/* --- RESPONSIVE DESIGN --- */
+@media (max-width: 768px) {
+    .footer-section {
+        padding: 80px 5vw 30px 5vw;
+    }
+
+    .top-right-dots {
+        top: 30px;
+        right: 30px;
+    }
+
+    .footer-container {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 40px;
+    }
+
+    .footer-right {
+        margin-top: 0;
+    }
+
+    .footer-bottom-area {
+        margin-top: 50px;
+    }
+
+    .copyright-text {
+        font-size: 0.8rem;
+    }
+}

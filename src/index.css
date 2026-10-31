@@ -1,0 +1,38 @@
+/* Import Font (Agar nahi hai toh internet se load karega) */
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
+
+/* Base Reset */
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  /* Horizontal scroll ko rokne ke liye sabse important */
+  overflow-x: hidden; 
+}
+
+body {
+  background-color: #ffffff;
+  color: #111111;
+  font-family: "DM Sans", sans-serif;
+  line-height: 1.6;
+  /* Horizontal scroll fix */
+  overflow-x: hidden; 
+  width: 100%;
+  position: relative;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Basic link reset */
+a {
+  text-decoration: none;
+  color: inherit;
+}
+
+/* Button reset */
+button {
+  font-family: inherit;
+}

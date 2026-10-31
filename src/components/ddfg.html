@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Still Growing - Perfect</title>
+    <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@800;900&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: #1a1a1a;
+        }
+
+        .growing-container {
+            position: relative;
+            width: 100%;
+            max-width: 1000px;
+            height: 320px;
+            background-color: #faf6ee;
+            border-radius: 8px;
+            overflow: hidden;
+            margin: 20px;
+        }
+
+        /* SVG Container covering the whole area */
+        .svg-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 10;
+            pointer-events: none;
+        }
+
+        .curved-text {
+            font-family: 'Nunito', sans-serif;
+            font-size: 52px;
+            font-weight: 900;
+            fill: #0d57bb;
+            letter-spacing: -0.5px;
+        }
+
+        /* Icons Container */
+        .floating-icons {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 5;
+        }
+
+        .icon {
+            position: absolute;
+            font-size: 2.2rem; 
+            animation: float 3.5s ease-in-out infinite;
+            filter: drop-shadow(0 5px 8px rgba(0,0,0,0.15));
+        }
+
+        /* --- EXACT ICON POSITIONS (Percentage Based) --- */
+        .star-1 { color: #0f8f78; font-size: 1.6rem; top: 65%; left: 12%; animation-delay: 0s; }
+        .butter { top: 48%; left: 20%; animation-delay: 0.3s; transform: rotate(-15deg); }
+        .laptop { top: 75%; left: 34%; animation-delay: 0.8s; }
+        .coffee { top: 28%; left: 47%; animation-delay: 0.2s; font-size: 2.8rem; }
+        .heart-box { top: 30%; left: 71%; animation-delay: 1.2s; font-size: 2rem; }
+        .doodle { top: 75%; left: 62%; animation-delay: 1s; font-size: 1.8rem; }
+        .star-2 { color: #0f8f78; font-size: 1.6rem; top: 65%; left: 88%; animation-delay: 0.6s; }
+
+        @keyframes float {
+            0% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-10px) rotate(5deg); }
+            100% { transform: translateY(0px) rotate(0deg); }
+        }
+
+        @media (max-width: 768px) {
+            .growing-container { height: 220px; }
+            .curved-text { font-size: 28px; }
+            .icon { font-size: 1.4rem; }
+            .coffee { font-size: 1.8rem; }
+            .heart-box { font-size: 1.4rem; }
+            .laptop { left: 30%; top: 78%; }
+            .doodle { left: 60%; top: 78%; }
+            .star-2 { left: 85%; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="growing-container">
+        
+        <!-- SVG Layer for Texts -->
+        <svg viewBox="0 0 1000 320" class="svg-layer" preserveAspectRatio="none">
+            
+            <!-- Left Text Arch -->
+            <!-- x: 100 to 480. Arch touches top at y=80 -->
+            <path id="path-left" d="M 100 220 Q 290 50 480 220" fill="transparent" />
+            <text class="curved-text">
+                <textPath href="#path-left" startOffset="50%" textAnchor="middle">
+                    still growing
+                </textPath>
+            </text>
+
+            <!-- Right Text Arch -->
+            <!-- x: 520 to 900. Arch touches top at y=80 -->
+            <path id="path-right" d="M 520 220 Q 710 50 900 220" fill="transparent" />
+            <text class="curved-text">
+                <textPath href="#path-right" startOffset="50%" textAnchor="middle">
+                    still growing
+                </textPath>
+            </text>
+
+        </svg>
+
+        <!-- Floating Icons Layer -->
+        <div class="floating-icons">
+            <span class="icon star-1">✦</span> 
+            <span class="icon butter">🧈</span>
+            <span class="icon laptop">💻</span>
+            <span class="icon coffee">☕</span>
+            <span class="icon heart-box">💝</span>
+            <span class="icon doodle">🎀</span> 
+            <span class="icon star-2">✦</span> 
+        </div>
+
+    </div>
+
+    <script>
+        document.addEventListener("mousemove", (e) => {
+            const icons = document.querySelectorAll('.icon');
+            const xAxis = (window.innerWidth / 2 - e.pageX) / 60;
+            const yAxis = (window.innerHeight / 2 - e.pageY) / 60;
+
+            icons.forEach((icon, index) => {
+                const speed = (index + 1) * 0.3; 
+                icon.style.marginLeft = `${xAxis * speed}px`;
+                icon.style.marginTop = `${yAxis * speed}px`;
+            });
+        });
+    </script>
+</body>
+</html>

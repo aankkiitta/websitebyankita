@@ -1,0 +1,21 @@
+.float-wrapper {
+  display: block;
+}
+
+.float-bob-inner {
+  display: block;
+  /* CSS translate does not conflict with Framer Motion's transform */
+  animation: float-bob 5s ease-in-out infinite;
+  animation-delay: var(--bob-delay, 0s);
+}
+
+@keyframes float-bob {
+  0%, 100% { translate: 0 0; }
+  50% { translate: 0 -0.8vh; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .float-bob-inner {
+    animation: none;
+  }
+}

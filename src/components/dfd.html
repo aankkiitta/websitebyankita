@@ -1,0 +1,265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Fixed Header Stack Cards</title>
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #111111;
+            overflow-x: hidden;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            border: 1px solid #eaeaea;
+            padding: 10px 20px;
+            border-radius: 50px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.04);
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar li {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+
+        .navbar li.active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* Main Section */
+        .about-section {
+            padding-top: 100px;
+            position: relative;
+            background-color: #ffffff; 
+        }
+
+        /* Pinned Header Wrapper */
+        .title-wrapper {
+            width: 100%;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px 0;
+            z-index: 10;
+        }
+
+        .main-title {
+            font-size: 3rem;
+            font-weight: 700;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            margin-top: 20px;
+        }
+
+        /* Individual Card Wrapper */
+        .card-wrapper {
+            width: 800px;
+            max-width: 90vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 75vh; /* Scroll distance between cards */
+        }
+
+        .card-wrapper:last-child {
+            margin-bottom: 90vh; /* Final scroll spacing */
+        }
+
+        /* White Card Content */
+        .card-content {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            width: 100%;
+            padding: 60px;
+            border-radius: 24px;
+            border: 1px solid #e2e2e2;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.06);
+            transform-origin: center top;
+        }
+
+        .card-content p {
+            font-size: 1.35rem;
+            line-height: 1.6;
+            color: #333333;
+            text-align: center;
+        }
+
+        /* Next Content Section */
+        .next-content {
+            position: relative;
+            z-index: 20;
+            min-height: 100vh;
+            background: #fafafa;
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .next-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            font-weight: 700;
+        }
+
+        .next-content p {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li>Home</li>
+            <li class="active">About</li>
+            <li>Stack</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <section class="about-section">
+        <!-- Sticky / Pinned Title Header -->
+        <div class="title-wrapper">
+            <h1 class="main-title">About Me</h1>
+        </div>
+        
+        <div class="cards-container">
+            <!-- CARD 1 -->
+            <div class="card-wrapper card-1">
+                <div class="card-content">
+                    <p>I studied Computer Science, so I understand how things work behind the scenes. But most of what I know came from just doing it - building, breaking, fixing, and building again for years. That mix is what makes my work solid on the inside and beautiful on the outside.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card-wrapper card-2">
+                <div class="card-content">
+                    <p>I work with pretty much everything the web throws at me - from code that makes things move (React, GSAP, Three.js) to platforms people already know, like Shopify and WordPress. Whether it's a simple site or a full 3D experience, I know how to build it, and build it well.</p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card-wrapper card-3">
+                <div class="card-content">
+                    <p>When I'm not coding, I focus on refining digital experiences, exploring creative web interactions, and continuous learning. I believe great products come from blending technical craft with thoughtful design intuition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="next-content">
+        <h2>Next Section</h2>
+        <p>All cards have cleanly finished stacking and the next section follows smoothly.</p>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- PIN TITLE "About Me" ---
+        // Keeps "About Me" pinned at top 90px until the whole stack finishes
+        ScrollTrigger.create({
+            trigger: ".title-wrapper",
+            start: "top 90px",
+            endTrigger: ".next-content",
+            end: "top 80%",
+            pin: true,
+            pinSpacing: false
+        });
+
+        // --- CARD 1 PIN & STACK ---
+        ScrollTrigger.create({
+            trigger: ".card-1",
+            start: "top 180px", // Sits right below the pinned "About Me" title
+            endTrigger: ".next-content",
+            end: "top 80%",
+            pin: true,
+            pinSpacing: false
+        });
+
+        gsap.to(".card-1 .card-content", {
+            scale: 0.94,
+            opacity: 0.5,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".card-2",
+                start: "top 80%",
+                end: "top 180px",
+                scrub: true
+            }
+        });
+
+        // --- CARD 2 PIN & STACK ---
+        ScrollTrigger.create({
+            trigger: ".card-2",
+            start: "top 180px",
+            endTrigger: ".next-content",
+            end: "top 80%",
+            pin: true,
+            pinSpacing: false
+        });
+
+        gsap.to(".card-2 .card-content", {
+            scale: 0.97,
+            opacity: 0.75,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".card-3",
+                start: "top 80%",
+                end: "top 180px",
+                scrub: true
+            }
+        });
+
+        // --- CARD 3 PIN ---
+        ScrollTrigger.create({
+            trigger: ".card-3",
+            start: "top 180px",
+            endTrigger: ".next-content",
+            end: "top 80%",
+            pin: true,
+            pinSpacing: false
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,116 @@
+@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@500;700&display=swap");
+
+.wb-section {
+  --wb-blue: #2b3fd1;
+  --wb-cream: white;
+
+  position: relative;
+  width: 100vw;                  /* full screen width */
+  margin-left: calc(50% - 50vw); /* breaks out of any parent container */
+  margin-right: calc(50% - 50vw);
+  background: var(--wb-cream);
+  border-radius: 0;
+  overflow: hidden;
+}
+
+/* ---------- Desktop inner wrapper size ---------- */
+/* image + text are kept inside a smaller centered area */
+.wb-art {
+  display: block;
+  width: 100%;
+  max-width: 900px;              /* change this to resize the banner on desktop */
+  height: auto;
+  margin: 0 auto;
+}
+
+/* ---------- Wavy text: overlaid on the left of the image ---------- */
+.wb-text {
+  position: absolute;
+  top: 50%;
+  left: max(16px, calc(50% - 450px + 24px)); /* follows the image's left edge (450 = half of max-width) */
+  width: 24%;                    /* smaller number = smaller text */
+  transform: translateY(-50%);
+  z-index: 2;
+}
+
+.wb-wave {
+  display: block;
+  width: 100%;
+  height: auto;
+  overflow: visible;
+}
+
+.wb-wave-text {
+  font-family: "DM Sans", sans-serif;
+  font-weight: 700;
+  font-size: 44px;
+  letter-spacing: -0.01em;
+  fill: var(--wb-blue);
+}
+
+/* ---------- Floating icons ---------- */
+.wb-icon {
+  position: absolute;
+  font-size: clamp(1rem, 1.6vw, 1.4rem);
+  line-height: 1;
+  pointer-events: none;
+  animation: wb-float 5s ease-in-out infinite;
+}
+
+.wb-i1 { top: 6%;  left: 22%;  color: #2a9d8f; }
+.wb-i2 { top: 4%;  right: 36%; animation-delay: 0.8s; }
+.wb-i3 { bottom: 6%; left: 44%; animation-delay: 1.6s; }
+.wb-i4 { bottom: 14%; right: 24%; color: #2a9d8f; animation-delay: 2.2s; }
+
+@keyframes wb-float {
+  0%, 100% { transform: translateY(0); }
+  50%      { transform: translateY(-8px); }
+}
+
+/* ---------- Mobile: text on top, bigger girl below ---------- */
+@media (max-width: 860px) {
+  .wb-section {
+    display: flex;
+    flex-direction: column;
+    padding-top: 24px;
+  }
+
+  /* text first, centered */
+  .wb-text {
+    position: relative;
+    top: auto;
+    left: auto;
+    order: 1;
+    width: 80%;              /* smaller number = smaller text */
+    margin: 0 auto -28px;    /* negative bottom pulls the girl closer */
+    padding: 12px 0 0;
+    transform: none;
+  }
+
+  /* girl second: fixed height + crop, so she looks bigger */
+  .wb-art {
+    order: 2;
+    width: 100%;
+    max-width: none;
+    height: clamp(240px, 70vw, 340px);
+    margin: 0 0 -10px;
+    object-fit: cover;
+    object-position: right bottom;
+  }
+
+  /* icons: placed in the empty parts of the wave, never on the text */
+  .wb-icon {
+    font-size: 1.1rem;
+  }
+
+  .wb-i1 { top: 8%;     left: 2%;   right: auto; bottom: auto; }  /* star, top-left */
+  .wb-i2 { top: -4%;    right: 6%;  left: auto;  bottom: auto; }  /* laptop, top-right */
+  .wb-i3 { bottom: 22%; left: 10%;  right: auto; top: auto; }     /* coffee, under the first curve */
+  .wb-i4 { bottom: 26%; right: 2%;  left: auto;  top: auto; }     /* star, bottom-right */
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .wb-icon {
+    animation: none;
+  }
+}

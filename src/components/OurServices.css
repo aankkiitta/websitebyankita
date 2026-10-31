@@ -1,0 +1,218 @@
+.svc-section {
+  --ink: #0b0b0b;
+  --muted: #4a4a4a;
+  --ghost: #f1f3f5;
+  display: grid;
+  grid-template-columns: minmax(360px, 0.45fr) 1fr;
+  gap: clamp(30px, 6vw, 100px);
+  align-items: start;
+  padding: clamp(80px, 8vw, 140px) clamp(20px, 6vw, 120px);
+  background: #fff;
+  color: var(--ink);
+  font-family: inherit;
+  position: relative;
+  z-index: 2; /* always paints above the About section's pinned cards */
+  box-sizing: border-box;
+  scroll-margin-top: 80px;
+}
+
+.svc-section *, 
+.svc-section *::before, 
+.svc-section *::after {
+  box-sizing: border-box;
+}
+
+/* ================= LEFT : Pinned Container ================= */
+.svc-section .svc__left {
+  position: relative;
+  width: 100%;
+}
+
+.svc-section .svc__sticky-box {
+  position: relative;
+  width: 100%;
+}
+
+.svc-section .svc__header-group {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Big number: only its TOP HALF is visible. The box is cut off at 58% of the font size,
+   so the bottom of the digits is hidden and the title sits right under the cut. */
+.svc-section .svc__num-crop {
+  font-size: clamp(140px, 14vw, 180px);
+  height: 0.58em;
+  overflow: hidden;
+  user-select: none;
+}
+
+.svc-section .svc__num {
+  display: block;
+  font-size: 1em;
+  font-weight: 800;
+  line-height: 1;
+  letter-spacing: -0.04em;
+  color: var(--ghost);
+  animation: svc-fade-in 0.4s ease forwards;
+}
+
+.svc-section .svc__title {
+  position: relative;
+  z-index: 1;
+  margin: 8px 0 0;
+  max-width: 12em;
+  font-size: clamp(1.5rem, 2.2vw, 2rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #111;
+  animation: svc-fade-in 0.4s ease forwards;
+}
+
+@keyframes svc-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* per-item header: mobile only */
+.svc-section .svc__head {
+  display: none;
+}
+
+/* ================= RIGHT : Scrolling Content ================= */
+.svc-section .svc__right {
+  display: flex;
+  flex-direction: column;
+}
+
+.svc-section .svc__item {
+  --p: 0;
+  min-height: 85vh;
+  padding-bottom: clamp(60px, 10vw, 140px);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.svc-section .svc__text {
+  margin: 0;
+  max-width: 36em;
+  font-size: clamp(1.05rem, 1.6vw, 1.35rem);
+  line-height: 1.6;
+  color: var(--muted);
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.8s ease, transform 0.8s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.svc-section .svc__shape-wrap {
+  display: flex;
+  justify-content: center;
+  margin-top: clamp(60px, 10vw, 120px);
+}
+
+.svc-section .svc__shape-move {
+  width: clamp(140px, 15vw, 220px);
+  aspect-ratio: 1 / 1;
+  transform: translateY(calc((0.5 - var(--p)) * 80px))
+    rotate(calc((var(--p) - 0.5) * 70deg));
+  will-change: transform;
+}
+
+.svc-section .svc__shape {
+  width: 100%;
+  height: 100%;
+  opacity: 0;
+  transform: scale(0.4);
+  filter: drop-shadow(0 24px 20px rgba(0, 0, 0, 0.15));
+  transition: opacity 0.6s ease, transform 1s cubic-bezier(0.34, 1.56, 0.64, 1) 0.1s;
+}
+
+.svc-section .svc__item.is-in .svc__text {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.svc-section .svc__item.is-in .svc__shape {
+  opacity: 1;
+  transform: scale(1);
+  animation: svc-float 5s ease-in-out calc(var(--d, 0s) + 1s) infinite;
+}
+
+@keyframes svc-float {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-12px); }
+}
+
+/* ================= MOBILE ================= */
+/* No pinned header on mobile. Each service has its own half-number + title above its
+   paragraph, so the number scrolls UP with the paragraph (nothing slides under anything). */
+@media (max-width: 900px) {
+  .svc-section {
+    display: block;
+    padding-top: 20px;
+  }
+
+  .svc-section .svc__left {
+    display: none;
+  }
+
+  .svc-section .svc__item {
+    min-height: 70vh;
+    padding-top: 30px;
+    justify-content: flex-start;
+  }
+
+  .svc-section .svc__head {
+    display: block;
+    margin-bottom: 22px;
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+
+  .svc-section .svc__item.is-in .svc__head {
+    opacity: 1;
+    transform: none;
+  }
+
+  .svc-section .svc__head .svc__num-crop {
+    font-size: clamp(96px, 30vw, 124px);
+  }
+
+  .svc-section .svc__head .svc__num {
+    color: #eceff2; /* a touch darker than desktop so it reads on phones */
+    animation: none;
+  }
+
+  .svc-section .svc__head .svc__title {
+    font-size: 1.15rem;
+    max-width: none;
+    animation: none;
+  }
+
+  .svc-section .svc__shape-wrap {
+    margin-top: 40px;
+  }
+}
+
+/* ================= REDUCED MOTION ================= */
+@media (prefers-reduced-motion: reduce) {
+  .svc-section .svc__text, 
+  .svc-section .svc__shape, 
+  .svc-section .svc__num, 
+  .svc-section .svc__title { transition: none; animation: none; }
+  .svc-section .svc__text { opacity: 1; transform: none; }
+  .svc-section .svc__shape { opacity: 1; transform: scale(1); }
+  .svc-section .svc__shape-move { transform: none; }
+  .svc-section .svc__head { opacity: 1; transform: none; transition: none; }
+  .svc-section .svc__item.is-in .svc__shape { animation: none; }
+}

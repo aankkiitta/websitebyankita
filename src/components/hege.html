@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Me - Stack & Scroll Up Effect</title>
+    <!-- GSAP & ScrollTrigger CDN -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/gsap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.2/ScrollTrigger.min.js"></script>
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        }
+
+        body {
+            background-color: #ffffff;
+            color: #000000;
+            overflow-x: hidden;
+        }
+
+        /* Hero / Introduction Section */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background-color: #ffffff;
+            padding: 20px;
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #666666;
+        }
+
+        /* Navbar */
+        .navbar {
+            position: fixed;
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: #ffffff;
+            padding: 10px 20px;
+            border-radius: 50px;
+            border: 1px solid #e5e5e5;
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.05);
+            z-index: 1000;
+        }
+
+        .navbar ul {
+            list-style: none;
+            display: flex;
+            gap: 20px;
+        }
+
+        .navbar li {
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 16px;
+            border-radius: 30px;
+        }
+
+        .navbar li.active {
+            background-color: #000000;
+            color: #ffffff;
+        }
+
+        /* Main Section */
+        .about-section {
+            padding-top: 50px;
+            position: relative;
+            background-color: #ffffff; 
+        }
+
+        .main-title {
+            text-align: center;
+            font-size: 3rem;
+            margin-bottom: 60px;
+            font-weight: 600;
+        }
+
+        /* Cards Container */
+        .cards-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+        }
+
+        /* Individual Card Wrapper */
+        .card-wrapper {
+            width: 800px;
+            max-width: 90vw;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: relative;
+            margin-bottom: 80vh; /* Distance before next card scrolls up */
+        }
+
+        .card-wrapper:last-child {
+            margin-bottom: 80vh;
+        }
+
+        /* White Card Content */
+        .card-content {
+            position: relative;
+            z-index: 2;
+            background: #ffffff;
+            width: 100%;
+            padding: 60px;
+            border-radius: 24px;
+            border: 1px solid #e0e0e0;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            transform-origin: center top;
+        }
+
+        .card-content p {
+            font-size: 1.4rem;
+            line-height: 1.6;
+            color: #111111;
+            text-align: center;
+        }
+
+        /* Next Content Section */
+        .next-content {
+            position: relative;
+            z-index: 10;
+            min-height: 100vh;
+            background: #ffffff;
+            border-top: 1px solid #eeeeee;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 100px 20px;
+            text-align: center;
+        }
+
+        .next-content h2 {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .next-content p {
+            font-size: 1.2rem;
+            color: #555555;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <ul>
+            <li>Home</li>
+            <li class="active">About</li>
+            <li>Stack</li>
+            <li>Contact</li>
+        </ul>
+    </nav>
+
+    <!-- Initial Landing View -->
+    <section class="hero">
+        <h1>Welcome to My Portfolio</h1>
+        <p>Scroll down to reveal the "About Me" stacked cards</p>
+    </section>
+
+    <section class="about-section">
+        <h1 class="main-title">About Me</h1>
+        
+        <div class="cards-container">
+            <!-- CARD 1 -->
+            <div class="card-wrapper card-1">
+                <div class="card-content">
+                    <p>I studied Computer Science, so I understand how things work behind the scenes. But most of what I know came from just doing it - building, breaking, fixing, and building again for years. That mix is what makes my work solid on the inside and beautiful on the outside.</p>
+                </div>
+            </div>
+
+            <!-- CARD 2 -->
+            <div class="card-wrapper card-2">
+                <div class="card-content">
+                    <p>I work with pretty much everything the web throws at me - from code that makes things move (React, GSAP, Three.js) to platforms people already know, like Shopify and WordPress. Whether it's a simple site or a full 3D experience, I know how to build it, and build it well.</p>
+                </div>
+            </div>
+
+            <!-- CARD 3 -->
+            <div class="card-wrapper card-3">
+                <div class="card-content">
+                    <p>When I'm not coding, I focus on refining digital experiences, exploring creative web interactions, and continuous learning. I believe great products come from blending technical craft with thoughtful design intuition.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="next-content">
+        <h2>Next Section</h2>
+        <p>The stacked cards scroll up smoothly together, keeping card 1 and 2 completely hidden behind card 3.</p>
+    </section>
+
+    <script>
+        gsap.registerPlugin(ScrollTrigger);
+
+        // --- CARD 1 PIN & STACK ---
+        ScrollTrigger.create({
+            trigger: ".card-1",
+            start: "top 160px",
+            endTrigger: ".card-3",
+            end: "top 160px",
+            pin: true,
+            pinSpacing: false
+        });
+
+        gsap.to(".card-1 .card-content", {
+            scale: 0.92,
+            opacity: 0.6,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".card-2",
+                start: "top 80%",
+                end: "top 160px",
+                scrub: true
+            }
+        });
+
+        // --- CARD 2 PIN & STACK ---
+        ScrollTrigger.create({
+            trigger: ".card-2",
+            start: "top 160px",
+            endTrigger: ".card-3",
+            end: "top 160px",
+            pin: true,
+            pinSpacing: false
+        });
+
+        gsap.to(".card-2 .card-content", {
+            scale: 0.96,
+            opacity: 0.8,
+            ease: "none",
+            scrollTrigger: {
+                trigger: ".card-3",
+                start: "top 80%",
+                end: "top 160px",
+                scrub: true
+            }
+        });
+
+        // --- CARD 3 PIN & SCROLL UP TOGETHER ---
+        // Pinned only until Card 3 arrives at top 160px.
+        // Once completed, Card 3 unpins and natural normal scroll takes over,
+        // moving Card 3 (and everything behind it) up and out of view.
+        ScrollTrigger.create({
+            trigger: ".card-3",
+            start: "top 160px",
+            end: "top 160px",
+            pin: true,
+            pinSpacing: false
+        });
+    </script>
+</body>
+</html>
