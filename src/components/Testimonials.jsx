@@ -27,7 +27,7 @@ const TESTIMONIALS = [
     quote: "AVANA delivered an excellent digital experience with a modern design and smooth functionality. Their attention to detail, creative approach, and commitment to quality made the entire project a great experience."
   }
 ];
-];
+
 
 const Arrow = ({ flip }) => (
   <svg width="16" height="16" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg"
