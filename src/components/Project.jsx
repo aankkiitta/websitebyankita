@@ -2,13 +2,41 @@ import { useEffect, useRef } from "react";
 import Float, { useSectionProgress } from "./Float";
 import "./Project.css";
 
+// ---- Project images (directly from src/assets) ----
+import avanaImg from "../assets/avana.png";
+import photographyImg from "../assets/photography.png"; // 👈 UPDATE THIS EXACT FILENAME
+import restaurantImg from "../assets/restaurant.png";
+import girlImg from "../assets/girl.png";
+import image1Img from "../assets/image1.png";
+// ----------------------------------------------------
+
 const PROJECTS = [
-  { type: "3D Website", name: "Voiceman AI", url: "https://vocie-man-ai.vercel.app/", image: "", from: "#1b1030", to: "#b4532a" },
-  { type: "Shopify Website", name: "Amoura Kids", url: "https://amourakids.com/", image: "", from: "#fdeee4", to: "#f6c9b3" },
-  { type: "No Code Website", name: "Travel Mate AI", url: "https://jubilant-dmc5ww.peachworlds.com/", image: "", from: "#2b2f33", to: "#6c7a5e" },
-  { type: "Shopify Website", name: "The Gut Story", url: "https://www.thegutstory.com", image: "", from: "#c8f7f4", to: "#38c6c0" },
-  { type: "No Code 3D Website", name: "GPU AI", url: "https://polite-6pxjzada.peachworlds.com/", image: "", from: "#0e0a14", to: "#e0562a" },
-  { type: "Framer Website", name: "Sakhi's Portfolio", url: "https://sakhi.framer.website/", image: "", from: "#f1f1f1", to: "#cfd2d8" },
+  { 
+    type: "Freelancer Portfolio", 
+    name: "Avana", 
+    url: "https://avanaaa.com/", 
+    image: avanaImg, 
+    from: "#fdeee4", 
+    to: "#f6c9b3" 
+  },
+  { 
+    type: "Photography Portfolio", 
+    name: "Photography", 
+    url: "https://photography-six-teal.vercel.app/", 
+    image: photographyImg, 
+    from: "#1b1030", 
+    to: "#b4532a" 
+  },
+  { 
+    type: "Restaurant Website", 
+    name: "Restaurant", 
+    url: "https://restaurant-gules-sigma-23.vercel.app/", 
+    image: restaurantImg, 
+    from: "#2b2f33", 
+    to: "#6c7a5e" 
+  },
+ 
+ 
 ];
 
 const MIN_SCALE = 0.8;
@@ -66,7 +94,6 @@ export default function Projects() {
       <ul className="pj__grid">
         {PROJECTS.map((p, i) => (
           <li key={p.name} className="pj__item" ref={(el) => (itemRefs.current[i] = el)}>
-            {/* Wrapped the pj__float to add x/y drift on scroll */}
             <Float progress={progress} x={i % 2 === 0 ? -20 : 20} y={i % 2 === 0 ? -30 : -40} bob={i * 0.3}>
               <div className="pj__float" style={{ "--fd": `${i * -0.9}s` }}>
                 <a className="pj__card" href={p.url} target="_blank" rel="noopener noreferrer">

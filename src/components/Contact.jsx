@@ -3,7 +3,7 @@ import { Star } from "./HeroShapes";
 import "./Contact.css";
 
 // ---- Edit these ----
-const PHONE = "+91 00000 00000";
+const PHONE = "9920770974";
 const EMAIL = "hello@yourdomain.com"; // used when FORM_ENDPOINT is empty (opens the visitor's mail app)
 const FORM_ENDPOINT = ""; // e.g. a Formspree URL "https://formspree.io/f/xxxx" to send without a mail app
 // --------------------

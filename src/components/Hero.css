@@ -222,6 +222,11 @@
     --hx-bot: calc(50% + 32px + var(--hx-h) / 2);      /* y of the button's bottom edge */
   }
 
+  /* Hide the big background marquee text on mobile */
+  .hx-marquee {
+    display: none;
+  }
+
   /* Shape sizes + positions copied from the reference (Sia) layout.
      Top shapes hang off the heading's top edge, bottom shapes off the button's bottom edge. */
 

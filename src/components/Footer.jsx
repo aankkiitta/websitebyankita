@@ -1,14 +1,14 @@
 import React from 'react';
 import './Footer.css';
 
-// ---- Edit these ----
-const EMAIL = "yourname@gmail.com";
-const PHONE_DISPLAY = "+91 00000 00000";
-const PHONE_LINK = "+910000000000";        // call link: country code + number, no spaces
-const WHATSAPP = "910000000000";           // country code + number, no + or spaces
-const GITHUB = "https://github.com/your-handle";
-const LINKEDIN = "https://linkedin.com/in/your-handle";
-// --------------------
+// ---- Your details ----
+const EMAIL = "ankitachauhan136@gmail.com";
+const PHONE_DISPLAY = "+91 99207 7074";        // display format (10-digit number grouped)
+const PHONE_LINK = "+91992077074";             // country code + number, no spaces
+const WHATSAPP = "91992077074";                // country code + number, no + or spaces
+const GITHUB = "https://github.com/aankkiitta";
+const LINKEDIN = "https://www.linkedin.com/in/ankita-chauhan-907b3a423/";
+// -----------------------
 
 const Footer = () => {
     return (
