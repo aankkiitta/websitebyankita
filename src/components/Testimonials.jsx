@@ -9,21 +9,18 @@ const TESTIMONIALS = [
     id: 1,
     name: "Sudharshan Infra",
     role: "REAL ESTATE & CONSTRUCTION",
-    image: "https://images.unsplash.com/photo-1503387762-592deb58ef4e?auto=format&fit=crop&w=150&q=80",
     quote: "Working with the team was a great experience. They understood our business requirements and transformed our vision into a professional, modern website. The design, responsiveness, and overall experience exceeded our expectations."
   },
   {
     id: 2,
     name: "Photography Studio",
     role: "PHOTOGRAPHY & CREATIVE",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
     quote: "The website beautifully showcases our photography work. The layout is clean, visually appealing, and easy to navigate. The entire process was smooth, and the final result perfectly represents our creative vision."
   },
   {
     id: 3,
     name: "AVANA",
     role: "DIGITAL & WEB SOLUTIONSS",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
     quote: "AVANA delivered an excellent digital experience with a modern design and smooth functionality. Their attention to detail, creative approach, and commitment to quality made the entire project a great experience."
   }
 ];
