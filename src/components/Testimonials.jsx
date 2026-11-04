@@ -4,7 +4,7 @@ import Float, { useSectionProgress } from "./Float"; // Import Float & hook
 import "./Testimonials.css";
 
 const TESTIMONIALS = [
-  const testimonials = [
+ 
   {
     id: 1,
     name: "Sudharshan Infra",
@@ -22,7 +22,7 @@ const TESTIMONIALS = [
   {
     id: 3,
     name: "AVANA",
-    role: "DIGITAL & WEB SOLUTIONS",
+    role: "DIGITAL & WEB SOLUTIONSS",
     image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
     quote: "AVANA delivered an excellent digital experience with a modern design and smooth functionality. Their attention to detail, creative approach, and commitment to quality made the entire project a great experience."
   }
